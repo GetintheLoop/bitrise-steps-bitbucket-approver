@@ -1,0 +1,47 @@
+title: "Bitbucket Approver"
+summary: A Bitrise step for approving a PR on Bitbucket
+description: |-
+  Use this step to approve a PR on Bitbucket
+website: https://github.com/...
+source_code_url: https://github.com/...
+support_url: https://github.com/.../issues
+host_os_tags:
+  - osx-10.10
+project_type_tags:
+  - ios
+  - android
+  - xamarin
+type_tags:
+  - script
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+deps:
+  brew:
+  - name: python
+  - name: git
+  - name: wget
+  apt_get:
+  - name: python
+  - name: git
+  - name: wget
+run_if: ""
+inputs:
+  - account_name_input: 'your Bitbucket account name'
+    opts:
+      title: "Bitbucket Account Name"
+      is_expand: true
+      is_required: true
+      value_options: []
+  - repo_slug_input: 'your Bitbucket repo slug'
+    opts:
+      title: "Bitbucket Repo Slug"
+      is_expand: true
+      is_required: true
+      value_options: []
+  - pull_request_id: "$PULL_REQUEST_ID"
+    opts:
+      title: "Pull Request ID"
+      is_expand: true
+      is_required: true
+      value_options: []
