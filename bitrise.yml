@@ -1,0 +1,24 @@
+format_version: 1.1.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  # define these in your .bitrise.secrets.yml
+  - AUTH_KEY: $AUTH_KEY
+  - AUTH_SECRET: $AUTH_SECRET
+
+workflows:
+  test:
+    steps:
+    - path::./:
+        title: Step Test
+        description: |-
+          The example input has a default value,
+          you can overwrite it if you want to, just like we did below,
+          but the step would use the default value specified in the `step.yml`
+          file if you would not specify another value.
+        run_if: true
+        inputs:
+        - account_name_input:
+        - repo_slug_input:
+        - pull_request_id:
