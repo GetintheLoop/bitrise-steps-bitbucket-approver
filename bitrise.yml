@@ -21,6 +21,6 @@ workflows:
           file if you would not specify another value.
         run_if: true
         inputs:
-        - account_name_input: gitl
-        - repo_slug_input: ios-app-getintheloop
-        - pull_request_id: 518
+        - account_name_input:
+        - repo_slug_input:
+        - pull_request_id:
