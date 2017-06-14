@@ -31,9 +31,14 @@ def approvePR(accessToken, accountName, repoSlug, PRid):
     approveURL = BB_APPROVE_ENDPOINT.format(accountName, repoSlug, PRid)
     print('Bitbucket PR Approve API URL: ' + approveURL)
     r = requests.post(approveURL, headers = header)
-    if not r.ok:
-        raise ValueError(r.text)
-    print('The PR is Approved')
+    if r.ok:
+        print('The PR is Approved')
+    else:
+        errorMessage = json.loads(r.text)['error']['message']
+        if errorMessage == "You already approved this pull request.":
+            print('The PR is already approved')
+        else:
+            raise ValueError(r.text)
 
 def comment(approved, accessToken, accountName, repoSlug, PRid):
     header = {'Authorization':'Bearer ' + accessToken}
@@ -52,7 +57,7 @@ def comment(approved, accessToken, accountName, repoSlug, PRid):
 accessToken = getAccessToken(AUTH_KEY, AUTH_SECRET)
 
 if APPROVED == 'succeeded':
-    approvePR(accessToken, ACCOUNT_NAME, REPO_SLUG, PR_ID)
     comment(True, accessToken, ACCOUNT_NAME, REPO_SLUG, PR_ID)
+    approvePR(accessToken, ACCOUNT_NAME, REPO_SLUG, PR_ID)
 else:
     comment(False, accessToken, ACCOUNT_NAME, REPO_SLUG, PR_ID)
