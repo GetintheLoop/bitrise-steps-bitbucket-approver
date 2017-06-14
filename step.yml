@@ -14,7 +14,7 @@ project_type_tags:
 type_tags:
   - script
 is_requires_admin_user: true
-is_always_run: false
+is_always_run: true
 is_skippable: false
 deps:
   brew:
@@ -42,6 +42,12 @@ inputs:
   - pull_request_id: "$PULL_REQUEST_ID"
     opts:
       title: "Pull Request ID"
+      is_expand: true
+      is_required: true
+      value_options: []
+  - approved: "$BITRISE_XCODE_TEST_RESULT"
+    opts:
+      title: "Approved"
       is_expand: true
       is_required: true
       value_options: []

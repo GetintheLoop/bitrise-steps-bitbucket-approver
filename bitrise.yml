@@ -4,8 +4,10 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 app:
   envs:
   # define these in your .bitrise.secrets.yml
-  - AUTH_KEY: $AUTH_KEY
-  - AUTH_SECRET: $AUTH_SECRET
+  - BITBUCKET_AUTH_KEY: $AUTH_KEY
+  - BITBUCKET_AUTH_SECRET: $AUTH_SECRET
+  - BITRISE_BUILD_URL: https://example.com/
+  - BITRISE_XCODE_TEST_RESULT: succeeded
 
 workflows:
   test:
@@ -19,6 +21,6 @@ workflows:
           file if you would not specify another value.
         run_if: true
         inputs:
-        - account_name_input:
-        - repo_slug_input:
-        - pull_request_id:
+        - account_name_input: gitl
+        - repo_slug_input: ios-app-getintheloop
+        - pull_request_id: 518
