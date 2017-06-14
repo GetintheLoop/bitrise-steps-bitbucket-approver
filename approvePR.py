@@ -6,8 +6,8 @@ ACCOUNT_NAME = os.environ.get('account_name_input')
 REPO_SLUG = os.environ.get('repo_slug_input')
 PR_ID = os.environ.get('pull_request_id')
 
-AUTH_KEY = os.environ.get('AUTH_KEY')
-AUTH_SECRET = os.environ.get('AUTH_SECRET')
+AUTH_KEY = os.environ.get('BITBUCKET_AUTH_KEY')
+AUTH_SECRET = os.environ.get('BITBUCKET_AUTH_SECRET')
 
 BB_API_ENDPOINT = 'https://api.bitbucket.org/2.0/repositories/{}/{}/pullrequests/{}/approve'
 AUTH_ENDPOINT = 'https://{}:{}@bitbucket.org/site/oauth2/access_token'
