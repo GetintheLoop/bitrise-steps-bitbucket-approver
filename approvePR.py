@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+from ApproverMessages import ApproverMessages
 
 ACCOUNT_NAME = os.environ.get('account_name_input')
 REPO_SLUG = os.environ.get('repo_slug_input')
@@ -43,11 +44,11 @@ def approvePR(accessToken, accountName, repoSlug, PRid):
 def comment(approved, accessToken, accountName, repoSlug, PRid):
     header = {'Authorization':'Bearer ' + accessToken}
     commentURL = BB_COMMENT_ENDPOINT.format(accountName, repoSlug, PRid)
-    content = "The PR is passed: "
+    content = ApproverMessages().getRandomSuccessMessage()
     if not approved:
-        content = "The PR is failed: "
+        content = ApproverMessages().getRandomFailureMessage()
 
-    payload = {"content": content + BITRISE_BUILD_URL}
+    payload = {"content": content + " " + BITRISE_BUILD_URL}
     print('Bitbucket PR Comment API URL: ' + commentURL)
     r = requests.post(commentURL, data = payload, headers = header)
     if not r.ok:
