@@ -20,12 +20,8 @@ deps:
   brew:
   - name: python
     bin_name: pip
-  - name: git
-  - name: wget
   apt_get:
   - name: python-pip
-  - name: git
-  - name: wget
 run_if: ""
 inputs:
   - account_name_input: 'your Bitbucket account name'
